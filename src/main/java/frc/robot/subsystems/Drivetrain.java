@@ -20,6 +20,10 @@ public class Drivetrain extends SubsystemBase {
 
   private boolean turboEnabled = false;
 
+  public Drivetrain () {
+    //m_rightMotor.setInverted(true);
+  }
+
   public DifferentialDrive getDifferentialDrive () {
     return this.m_drive;
   }
