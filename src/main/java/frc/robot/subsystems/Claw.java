@@ -12,9 +12,10 @@ import frc.robot.Constants.ClawConstants;
 public class Claw extends SubsystemBase {
 
   private final Servo m_servito = new Servo(ClawConstants.kServitoPort);
+  private final Servo m_servo = new Servo(ClawConstants.kServoPort);
 
-  /** Creates a new Claw. */
   public Claw() {
+    m_servo.set(1);
     m_servito.set(1);
   }
 

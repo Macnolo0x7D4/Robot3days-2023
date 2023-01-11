@@ -28,11 +28,12 @@ public final class Constants {
   }
 
   public static final class ArmConstants {
-    public static final int kLeftMotorPort = 4;
-    public static final int kRightMotorPort = 5;
+    public static final int kLeftMotorPort = 2;
+    public static final int kRightMotorPort = 3;
   }
 
   public static class ClawConstants {
-    public static final int kServitoPort = 0;
+    public static final int kServitoPort = 4;
+    public static final int kServoPort = 5;
   }
 }

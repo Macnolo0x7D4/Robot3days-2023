@@ -10,7 +10,6 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 
 public class RobotContainer {
@@ -23,10 +22,6 @@ public class RobotContainer {
   public RobotContainer() {
     m_drivetrain.setDefaultCommand(m_drivetrain.drive(m_driverController));
 
-    configureBindings();
-  }
-
-  private void configureBindings() {
     m_driverController.button(4).onTrue(
         m_drivetrain.toggleTurbo());
 
