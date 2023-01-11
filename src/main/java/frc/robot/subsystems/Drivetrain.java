@@ -22,9 +22,15 @@ public class Drivetrain extends SubsystemBase {
   private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(m_frontLeftMotor, m_rearLeftMotor);
   private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(m_frontRightMotor, m_rearRightMotor);
 
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+  // private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+  private final DifferentialDrive m_drive = new DifferentialDrive(m_frontLeftMotor, m_frontRightMotor);
+  // private final DifferentialDrive m_drive = new DifferentialDrive(m_rearLeftMotor, m_rearRightMotor);
 
   private boolean turboEnabled = false;
+
+  public Drivetrain () {
+    //m_frontLeftMotor.setInverted(true);
+  }
 
   public DifferentialDrive getDifferentialDrive() {
     return this.m_drive;
