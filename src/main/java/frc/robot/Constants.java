@@ -15,11 +15,24 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kSubsystemsControllerPort = 1;
   }
+
   public static class DrivetrainConstants {
-    public static final int kMotorLeftPort = 2;
-    public static final int kMotorRightPort = 3;
+    public static final int kMotorFrontLeftPort = 0;
+    public static final int kMotorRearLeftPort = 1;
+    public static final int kMotorFrontRightPort = 2;
+    public static final int kMotorRearRightPort = 3;
 
     public static final double kNormalSpeed = 0.8;
+  }
+
+  public static final class ArmConstants {
+    public static final int kLeftMotorPort = 4;
+    public static final int kRightMotorPort = 5;
+  }
+
+  public static class ClawConstants {
+    public static final int kServitoPort = 0;
   }
 }
