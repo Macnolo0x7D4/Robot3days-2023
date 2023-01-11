@@ -6,6 +6,8 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -13,34 +15,28 @@ import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 
 public class RobotContainer {
   private final Drivetrain m_drivetrain = new Drivetrain();
+  private final Arm m_arm = new Arm();
+  private final Claw m_claw = new Claw();
 
-  private final CommandGenericHID m_driverController =
-      new CommandGenericHID(OperatorConstants.kDriverControllerPort);
+  private final CommandGenericHID m_driverController = new CommandGenericHID(OperatorConstants.kDriverControllerPort);
 
   public RobotContainer() {
-    m_drivetrain.setDefaultCommand(
-        Commands.run(
-            () -> m_drivetrain.getDifferentialDrive().arcadeDrive(
-                  m_driverController.getRawAxis(4) * m_drivetrain.getTurbo(),
-                  m_driverController.getRawAxis(1) * m_drivetrain.getTurbo()
-                ),
-            m_drivetrain
-            /*() -> m_drivetrain.getDifferentialDrive().tankDrive(
-                  -m_driverController.getRawAxis(1) * m_drivetrain.getTurbo(),
-                  m_driverController.getRawAxis(5) * m_drivetrain.getTurbo()
-                ),
-                
-            m_drivetrain*/
-        )
-    );
+    m_drivetrain.setDefaultCommand(m_drivetrain.drive(m_driverController));
 
     configureBindings();
   }
 
   private void configureBindings() {
-    m_driverController.axisGreaterThan(3, 0.3).toggleOnTrue(
-      Commands.runOnce(() -> m_drivetrain.toggleTurbo(), m_drivetrain)
-    );
+    m_driverController.button(4).onTrue(
+        m_drivetrain.toggleTurbo());
+
+    m_driverController.axisGreaterThan(2, 0.3).whileTrue(
+        m_arm.move(-0.5));
+
+    m_driverController.axisGreaterThan(3, 0.3).whileTrue(
+        m_arm.move(0.5));
+
+    m_driverController.button(1).onTrue(m_claw.open()).onFalse(m_claw.close());
   }
 
   public Command getAutonomousCommand() {
